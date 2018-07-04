@@ -1,0 +1,44 @@
+/*Napisz program, który będzie pobierał od użytkownika imiona par dopóki nie wprowadzi imienia „-”, 
+następnie poproś użytkownika o podanie jednego z wcześniej wprowadzonych imion i wyświetl imię odpowiadającego mu partnera.
+*/
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+
+ 
+public class JavaApplication1 {
+
+    public static void main(String[] args) {
+  
+        Scanner sc=new Scanner(System.in);
+        Map <String,String> maps=new HashMap<>();
+        String name;
+        String name2;
+        
+        while(true)
+        {
+        System.out.println("Wprowadz pierwsze imie");
+        name=sc.next();
+        if(name.equals("-"))
+                {
+                break;
+                }
+         if(maps.containsKey(name))
+        {
+        System.out.println("Wprowadziles juz takie imie");
+        continue;
+        }
+        System.out.println("Wprowadz drogie imie");
+        name2=sc.next();
+        if(name2.equals("-"))
+                {
+                break;
+                }
+        maps.put(name, name2);
+        }         
+        System.out.println("Wprowadz wczesniejsze imie");
+        name=sc.next();
+        System.out.println("Imie partnera :"+maps.get(name));       
+    }
+}

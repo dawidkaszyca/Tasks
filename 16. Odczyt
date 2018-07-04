@@ -1,0 +1,42 @@
+# Zadania
+16. Odczyt
+
+/*Napisz program, który pobierze od użytkownika ścieżkę do pliku i  wyświetli
+zawartość pliku na ekranie wraz z informacją ile linii znajduje się w pliku.
+*/
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.util.Scanner;
+
+
+ 
+public class JavaApplication1 {
+
+    public static void main(String[] args) {
+    String line;
+    Scanner sc=new Scanner (System.in);
+    System.out.println("Podaj sciezke do pliku");
+    String read;
+    line=sc.next();
+    int number=0;
+    try
+    {
+    BufferedReader bf=new BufferedReader(new FileReader(line));
+        do
+        {
+        read=bf.readLine();
+        if(read !=null)
+        {
+        System.out.println(read);
+        number++;
+        }
+        }
+        while(read !=null);
+    }
+    catch(Exception e)
+    {
+        System.out.println("Input error...");
+    }
+   System.out.println("Plik zawieral : "+number+" linijek ");     
+}
+}

@@ -32,6 +32,7 @@ public class JavaApplication1 {
         }
         }
         while(read !=null);
+        bf.close();
     }
     catch(Exception e)
     {

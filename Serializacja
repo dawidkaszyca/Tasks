@@ -1,0 +1,48 @@
+# Zadania
+18.1 Serializacja
+/*Napisz program, który poprosi użytkownika o wprowadzenie kilku imion, 
+imiona te zapisz w liście a następnie zserializuj ją do pliku. 
+Napisz metodę, która odczyta ten plik i wyświetli zawartość listy na konsoli.
+Wiesz, że właśnie napisałeś prostą bazę danych? ;)
+*/
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
+import java.io.Serializable;
+public class JavaApplication1 {
+
+    public static void Odczyt(String file_location ) throws IOException, ClassNotFoundException
+    {
+    List<String> names = null;    
+    try(ObjectInputStream ois= new ObjectInputStream(new FileInputStream(file_location)))
+    {
+    names=(List<String>)ois.readObject();
+    }
+    for(String i :names)
+    {
+        System.out.println(i);  
+    }
+    }
+    
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    List<String> list=new LinkedList<>();
+    Scanner sc=new Scanner(System.in);
+    int number=0;
+    System.out.println("podaj ile chcesz wprowadzic imion");
+    number=sc.nextInt();
+    for(int i=0;i<number;i++){
+        System.out.println("podaj :"+(i+1)+" imie");
+        list.add(sc.next());
+    }
+    try(ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream("objects.bin")))
+    {
+    oos.writeObject(list);
+    }
+    Odczyt("objects.bin");
+}
+}

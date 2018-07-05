@@ -1,0 +1,40 @@
+# Zadania
+19.2 Enum
+/*Napisz klasę Human, która będzie reprezentowała człowieka.
+Niech klasa ta posiada atrybuty takie jak imię, wiek, kolor oczu,
+kolor włosów. Niech te dwa ostatnie atrybuty będą typami wyliczeniowymi.
+Stwórz instancję takiej klasy.
+*/
+package javaapplication1;
+public class Human {
+    String name;
+    int age;
+    EyeColor eye;
+    HairColor hair;
+  Human(int age,String name,EyeColor eye,HairColor hair)
+  {
+    this.age=age;
+    this.name=name;
+    this.eye=eye;
+    this.hair=hair; 
+  }
+  public void Info(){
+      System.out.println("name :"+name+"\nage :"+age+"\nhair color :"+hair+"\neye color:"+eye);
+  }
+  public static void main(String[] args)  {
+     Human h=new Human(23,"dawid",EyeColor.Blue,HairColor.Blond);
+     h.Info();
+}
+};
+enum EyeColor {
+        Blue,
+        Green,
+        Brown,
+        Gray
+    };
+enum HairColor{
+        Black,
+        Blond,
+        Ginger,
+        Brown        
+    };

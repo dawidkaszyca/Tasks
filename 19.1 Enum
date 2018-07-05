@@ -1,0 +1,42 @@
+# Zadania
+19.1 Enum
+/*Napisz typ wyliczeniowy Computation, który będzie reprezentował prosty kalkulator.
+Niech typ ten posiada następujące wartości MULTIPY, DIVIDE, ADD, SUBTRACT.
+Niech typ ten posiada metodę public double perform(double x, double y), która zwróci wynik odpowiedniej operacji.
+Na przykład Computation.ADD.perform(1, -5) powinno zwrócić -4
+*/
+package javaapplication1;
+public class Human {
+public enum Computation{
+    MULTIPY{
+        public double perform(double a,double b){
+            return a*b;
+        }
+    },
+    DIVIDE{
+        public double perform(double a,double b){
+            return a/b;
+        }
+    
+    },
+    ADD{
+            public double perform(double a,double b){
+            return a+b;
+            }
+    },
+            
+     
+    SUBTRACT{
+            public double perform(double a,double b){
+            return a-b;
+            }
+    };
+    public abstract double perform(double x, double y);
+    }; 
+   
+  
+    public static void main(String[] args)  {
+     
+        System.out.println(Computation.SUBTRACT.perform(2.3,3.2));
+}
+};

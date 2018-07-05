@@ -1,0 +1,41 @@
+# Zadania
+17.1 try with resource
+/*Strony w internecie tworzone są przy pomocy HTML,
+jest to język znaczników, który jest interpretowany przez przeglądarki internetowe wyświetlające strony www.
+Przykładem znaczników jest para <em>tekst</em>, jak widzisz jest tu znacznik otwierający <em> oraz zamykający </em>
+(akurat ta para odpowiedzialna jest za wyróżnianie tekstu). Wewnątrz znaczników znajduje się treść np. tekst. 
+Istnieje wiele innych par znaczników np. <h1></h1>, <p></p>, <ul></ul> itd.,
+
+Zaimplementuj klasę HtmlTag, która będzie menadżerem kontekstu.
+W konstruktorze powinna przyjmować nazwę znacznika np. em. 
+Klasa powinna mieć metodę body, która przyjmie parametr typu String i wypisze go na konsoli. Uruchamiając kod
+*/
+class HtmlTag implements AutoCloseable{
+
+private String tag;    
+public HtmlTag(String tag){
+this.tag=tag;
+    System.out.println("<"+tag+">");
+}
+public void body(String text)
+{
+    System.out.println(text);
+}
+public void close()
+{
+System.out.println("</"+tag+">");
+}
+};
+ 
+public class JavaApplication1 {
+
+    public static void main(String[] args) {
+    try(
+    HtmlTag h1 = new HtmlTag("h1");
+    HtmlTag em = new HtmlTag("em")
+            )
+    {
+     em.body("moj tekst");
+    }
+}
+}

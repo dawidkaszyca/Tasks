@@ -1,0 +1,53 @@
+# Zadania
+27.Formatter
+/*
+Plik CSV zawiera trzy kolumny oddzielone znakiem ,. 
+Pierwsza kolumna zawiera imię, druga liczbę zmiennoprzecinkową trzecia dzień tygodnia.
+Twoim zadaniem jest wczytanie zawartości tego pliku i wyświetlenie jej w formie tabeli.
+Efekt, który chcesz uzyskać wygląda następująco:
+| Piotrek | 123.12  | poniedziałek |
+| Tomek   | 321.30  | wtorek       |
+| Marcin  | -123.12 | środa        |
+| Wojtek  | -3.12   | czwartek     |
+ */
+package javaapplication1;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
+
+public class CSV  {   
+  
+    
+     static void Odczyt(List lista) {
+        String linia;
+        int ilosc = 0;
+        try (BufferedReader bf = new BufferedReader(new FileReader("plik1.txt"))) {
+            do {
+                linia = bf.readLine();
+                if (linia != null) {
+                    lista.add(linia);
+                    ilosc++;
+                }
+            } while (linia != null);
+        } catch (Exception e) {
+            System.out.println("ZLY PLIK");
+        }
+
+    }
+    
+  
+    public static void main(String[] args) {
+        List<String> list=new LinkedList<>();
+        Odczyt(list);
+    
+        for(String i:list)
+        {
+            String[] tab=i.split(",");
+            System.out.format("| %-7s| %-7s| %-12s|%n",tab[0],tab[1],tab[2]);
+        }
+    }
+}; 

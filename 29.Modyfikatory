@@ -1,0 +1,100 @@
+# Zadania
+29.Modyfikatory
+/*
+/*
+Napisz program, który będzie symulował działanie banku. Zaimplementuj następujące interfejsy:
+
+public interface Account {
+    void deposit(int amount);
+    void withdraw(int amount);
+}
+public interface BankTransfer {
+    void transfer(BankAccount from, BankAccount to, int amount);
+}
+Bank przeprowadzający operację przesyłu środków pobiera stałą opłatę 1zł od nadawcy przelewu. Jakich modyfikatorów dostępu użyjesz? Dlaczego akurat tych?
+ */
+package javaapplication1;
+
+interface Account {
+
+    void deposit(int amount);
+
+    void withdraw(int amount);
+}
+
+interface BankTransfer {
+
+    void transfer(BankAccount from, BankAccount to, int amount);
+}
+
+public class Bank implements BankTransfer {
+
+    public BankAccount openAccount() {
+        return new BankAccount();
+    }
+
+    @Override
+    public void transfer(BankAccount from, BankAccount to, int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("ammount must be > 0");
+        } else if (from.balance >= amount + 1) {
+            from.balance -= amount + 1;
+            to.balance += amount;
+        } else {
+            System.out.println("No balance on account");
+        }
+
+    }
+
+    public static void main(String args[]) {
+        Bank bank = new Bank();
+        BankAccount account1 = bank.openAccount();
+        BankAccount account2 = bank.openAccount();
+
+        account1.deposit(100);
+        account2.deposit(50);
+
+        bank.transfer(account1, account2, 65);
+
+        System.out.println(account1.getBalance());
+        System.out.println(account2.getBalance());
+
+    }
+}
+
+class BankAccount implements Account {
+
+    int balance;
+
+    BankAccount() {
+        balance = 0;
+    }
+
+    BankAccount(int balance) {
+        this.balance = balance;
+    }
+
+    @Override
+    public void deposit(int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("ammount must be > 0");
+        } else {
+            balance += amount;
+        }
+    }
+
+    @Override
+    public void withdraw(int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("ammount must be > 0");
+        } else if (balance >= amount) {
+            balance -= amount;
+        } else {
+            System.out.println("No balance on account");
+        }
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+};

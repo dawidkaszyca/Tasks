@@ -1,6 +1,5 @@
 # Zadania
 //Potyczki algorytmiczne Język polski [B]
-// tresc https://sio2.mimuw.edu.pl/c/pa-2018-1/p/pol/
 #include <iostream>
 #include<string.h>
 using namespace std;
@@ -22,7 +21,8 @@ void funkcja(char *s,int rozmiar){
         wspolgloski++;
     }
     if((wspolgloski==3||samogloski==3) && pierwsze==true){
-        rozwiazanie=rozwiazanie+((roznica-3)*((rozmiar-3)-(lewa-2)))+(roznica-3)+((rozmiar-3)-(lewa-2))+1;
+        rozwiazanie=rozwiazanie+((roznica-3)*((rozmiar-3)-(lewa-2)))
+   +(roznica-3)+((rozmiar-3)-(lewa-2))+1;
         roznica=2;
     }
     else if(wspolgloski>3||samogloski>3){
@@ -30,7 +30,8 @@ void funkcja(char *s,int rozmiar){
         roznica=2;
     }
     else if(wspolgloski==3||samogloski==3 && pierwsze==false){
-        rozwiazanie=rozwiazanie+((lewa-2)*((rozmiar-3)-(lewa-2)))+(lewa-2)+((rozmiar-3)-(lewa-2))+1;
+        rozwiazanie=rozwiazanie+((lewa-2)*((rozmiar-3)-(lewa-2)))
+    +(lewa-2)+((rozmiar-3)-(lewa-2))+1;
         roznica=2;
         pierwsze=true;
     }

@@ -1,7 +1,6 @@
 # Zadania
 //Potyczki algorytmiczne Język polski [B]
-// tresc zadania https://sio2.mimuw.edu.pl/c/pa-2018-1/p/pol/
-
+// tresc https://sio2.mimuw.edu.pl/c/pa-2018-1/p/pol/
 #include <iostream>
 #include<string.h>
 using namespace std;

@@ -1,0 +1,50 @@
+//potyczki algorytmiczne 
+//zad Język polski
+//tresc https://sio2.mimuw.edu.pl/c/pa-2018-1/p/pol/
+
+#include <iostream>
+#include<string.h>
+using namespace std;
+void funkcja(char *s,int rozmiar){
+    int samogloski=0;
+    int wspolgloski=0;
+    long roznica=0;
+    long long rozwiazanie=0;
+    long lewa=0;
+    bool pierwsze=false;
+    while(*s!='\0'){
+    roznica++;
+    if(*s=='a'||*s=='e'||*s=='i'||*s=='o'||*s=='u'||*s=='y'){
+        samogloski++;
+        wspolgloski=0;
+    }
+    else {
+        samogloski=0;
+        wspolgloski++;
+    }
+    if((wspolgloski==3||samogloski==3) && pierwsze==true){
+        rozwiazanie=rozwiazanie+((roznica-3)*((rozmiar-3)-(lewa-2)))+(roznica-3)+((rozmiar-3)-(lewa-2))+1;
+        roznica=2;
+    }
+    else if(wspolgloski>3||samogloski>3){
+        rozwiazanie=rozwiazanie+1+(rozmiar-(lewa+1));
+        roznica=2;
+    }
+    else if(wspolgloski==3||samogloski==3 && pierwsze==false){
+        rozwiazanie=rozwiazanie+((lewa-2)*((rozmiar-3)-(lewa-2)))+(lewa-2)+((rozmiar-3)-(lewa-2))+1;
+        roznica=2;
+        pierwsze=true;
+    }
+    s++;
+    lewa++;
+    }
+    cout<<rozwiazanie<<endl;
+}
+int main(){
+string str;
+cin>>str;
+char nazwa [str.length()];
+strcpy(nazwa, str.c_str());
+char *wsk=nazwa;
+funkcja(wsk,str.length());
+}

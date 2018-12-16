@@ -1,0 +1,175 @@
+//potyczki algorytmiczne 
+//zadanie Nowy kontrakt 
+//https://sio2.mimuw.edu.pl/c/pa-2018-1/p/kon/
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+void funkcja(char*bigdata,int* liczbyuser,int n){
+long long dlugosc=0;
+int dlobecna=0;
+char*wskdlugosc;
+long long wynik=0;
+char*poprzednia;
+char*obecna;
+char badaj[15];
+bool dopiszzero=false;
+bool mniejsza=false;
+char*wsk=bigdata;
+while(*wsk!='\0'){
+    wsk++;
+    dlugosc++;
+}
+liczbyuser++;
+int agrest=1;
+    while(agrest!=n){
+        itoa(*liczbyuser, badaj, 10);
+        obecna=badaj;
+        wskdlugosc=badaj;
+        poprzednia=bigdata;
+        dlobecna=0;
+        char *sprawdz=poprzednia;
+        while(*sprawdz!='\0'){
+        sprawdz++;
+        }
+        while(*wskdlugosc!='\0'){
+        wskdlugosc++;
+        dlobecna++;
+        }
+        dopiszzero=false;
+        mniejsza=false;
+        if(dlobecna<=dlugosc){
+            while(1){
+                if(*poprzednia=='\0'&&*obecna=='\0'){
+                     *poprzednia='0';
+                     dlugosc++;
+                     poprzednia++;
+                     *poprzednia='\0';
+                     wynik+=1;
+                     break;
+                }
+                else if(*obecna=='\0'){
+                    int licznik=0;
+                    int ile=0;
+                    char *sprawdz9=poprzednia;
+                    bool tera=false;
+                    if(*poprzednia!='9'){
+                        tera=true;
+                    }
+                    while(*sprawdz9!='\0'){
+                        if(*sprawdz9!='9'){
+                            licznik=ile;
+                        }
+                        ile++;
+                        sprawdz9++;
+                    }
+                    if(licznik!=0){
+                        for(int i=0;i<licznik;i++){
+                           poprzednia++;
+                        }
+                        *poprzednia=(int)*poprzednia+1;
+                        poprzednia++;
+                        if(*poprzednia!='\0'){
+                        while(*poprzednia!='\0'){
+                            *poprzednia='0';
+                            poprzednia++;
+                        }
+                        }
+                        wynik+=(dlugosc-dlobecna);
+                    }
+                    else if(licznik==0 &&tera==false){
+                        while(*poprzednia!='\0'){
+                            *poprzednia='0';
+                             poprzednia++;
+                        }
+                        *poprzednia='0';
+                        poprzednia++;
+                        dlugosc++;
+                        wynik+=(dlugosc-dlobecna);
+                        *poprzednia='\0';
+                    }
+                    else if(tera==true){
+                        *poprzednia=(int)*poprzednia+1;
+                        wynik+=(dlugosc-dlobecna);
+                        poprzednia++;
+                        if(*poprzednia!='\0'){
+                        while(*poprzednia!='\0'){
+                            *poprzednia='0';
+                            poprzednia++;
+                        }
+                        }
+                    }
+                    break;
+                }
+                else if(*poprzednia>*obecna){
+                    dopiszzero=true;
+                    break;
+                }
+                else if(*poprzednia==*obecna){
+                    poprzednia++;
+                    obecna++;
+                    continue;
+                }
+                else if(*obecna>*poprzednia){
+                    while(*obecna!='\0'){
+                    *poprzednia=*obecna;
+                    poprzednia++;
+                    obecna++;
+                }
+                if(*poprzednia!='\0'){
+                while(*poprzednia!='\0'){
+                    *poprzednia='0';
+                    poprzednia++;
+                }
+                *poprzednia='\0';
+                }
+                wynik+=(dlugosc-dlobecna);
+                break;
+                }
+            }
+            if(dopiszzero==true){
+                while(*obecna!='\0'){
+                    *poprzednia=*obecna;
+                    poprzednia++;
+                    obecna++;
+                }
+                while(*poprzednia!='\0'){
+                    *poprzednia='0';
+                    poprzednia++;
+                    *poprzednia='\0';
+                }
+                    *poprzednia='0';
+                    poprzednia++;
+                    *poprzednia='\0';
+                    dlugosc++;
+                    wynik+=(dlugosc-dlobecna);
+            }
+            }
+        else if(dlobecna>dlugosc){
+            while(*obecna!='\0'){
+                *poprzednia=*obecna;
+                poprzednia++;
+                obecna++;
+            }
+            dlugosc=dlobecna;
+            *poprzednia='\0';
+        }
+    liczbyuser++;
+    agrest++;
+    }
+cout<<wynik;
+}
+int main()
+{
+int n=142109;
+cin>>n;
+int user[n+1];
+int*userptr=user;
+char tablica[200015];
+char* bigdata=tablica;
+for(int i=0;i<n;i++){
+cin>>user[i];
+}
+itoa(*userptr, tablica,10);
+funkcja(bigdata,userptr,n);
+return 0;
+}
